@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public float asSlowScale = 0.2f, asCameraMoveTime = 0.5f,
         asUpdateTime = 0.02f, asPauseTime = 1.0f;
     public Image asFocusImage;
+    public AudioSource asFocusSource;
 
     private void Awake()
     {
@@ -86,8 +87,12 @@ public class GameManager : MonoBehaviour
     private IEnumerator _PlayAttackScene(Spirit targetSpirit)
     {
         yield return null;
+
         // Set state to pause other game logic
         SetState(GameState.Event);
+
+        // Play audio
+        asFocusSource.Play();
 
         var cameraTransform = gameCamera.Camera.transform;
         var originalCameraPos = cameraTransform.position;

@@ -11,14 +11,9 @@ public class SpiritSpawnerLevel1 : SpiritSpawner {
     {
         for(int i = 0; i < count; i++)
         {
-            float x = minRadius + Random.Range(0, maxRadius - minRadius);
-            float z = minRadius + Random.Range(0, maxRadius - minRadius);
-
-            if (Random.Range(0f, 1f) < 0.5f)
-                x *= -1;
-            if (Random.Range(0f, 1f) < 0.5f)
-                z *= -1;
-            SpawnSpirit(new Vector3(x, 0, z));
+            var r = Random.Range(minRadius, maxRadius);
+            var angle = Random.Range(0f, 360f);
+            SpawnSpirit(new Vector3(r * Mathf.Cos(angle), 0, r * Mathf.Sin(angle)));
         }
     }
 }

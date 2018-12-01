@@ -19,6 +19,7 @@ public class Spirit : MonoBehaviour {
 
     [Header("Audio")]
     public AudioSource explosionSource;
+    public AudioSource hitSource;
 
     [HideInInspector] public SpiritState state;
     [HideInInspector] public Rigidbody rBody;
@@ -182,6 +183,9 @@ public class Spirit : MonoBehaviour {
             source.ReduceSoul(8);
         else
             source.ReduceSoul(12);
+
+        // Audio
+        hitSource.Play();
     }
 
     public void Explode()
