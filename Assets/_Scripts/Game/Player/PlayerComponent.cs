@@ -2,15 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerComponent : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+public abstract class PlayerComponent : MonoBehaviour
+{
+    public virtual void HandleUpdate(Player player) { }
+    public virtual void HandleFixedUpdate(Player player) { }
 }
