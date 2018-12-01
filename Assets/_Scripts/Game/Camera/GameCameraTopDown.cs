@@ -31,9 +31,4 @@ public class GameCameraTopDown : GameCamera {
         else
             transform.position = smoothPos;
     }
-
-    public Ray GetScreenRay(Vector3 pos)
-    {
-        return Camera.ScreenPointToRay(pos);
-    }
 }

@@ -17,6 +17,11 @@ public abstract class GameCamera : MonoBehaviour {
         Camera = GetComponentInChildren<Camera>();
     }
 
+    public Ray GetScreenRay(Vector3 pos)
+    {
+        return Camera.ScreenPointToRay(pos);
+    }
+
     public abstract void HandleUpdate();
     public abstract void HandleFixedUpdate();
 }
