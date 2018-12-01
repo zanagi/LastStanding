@@ -2,21 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerState
-{
-    Idle,
-    Action
-}
-
 public class Player : MonoBehaviour
 {
-    [HideInInspector] public PlayerState playerState;
-
     private PlayerComponent[] components;
     private Spirit spirit;
 
     public float HealthRatio { get { return spirit.HealthRatio; } }
     public float SoulRatio { get { return spirit.SoulRatio; } }
+    public SpiritState State { get { return spirit.state; } set { spirit.state = value; }  }
 
     private void Start()
     {

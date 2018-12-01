@@ -26,7 +26,7 @@ public class PlayerMoveController : PlayerComponent
 
     private void HandleMove(Player player)
     {
-        if (player.playerState != PlayerState.Idle)
+        if (player.State != SpiritState.Idle)
             return;
 
         var h = Input.GetAxis(Static.horizontalAxis);
