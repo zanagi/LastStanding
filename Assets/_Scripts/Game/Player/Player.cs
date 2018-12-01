@@ -2,8 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerState
+{
+    Idle,
+    Action
+}
+
 public class Player : MonoBehaviour
 {
+    [HideInInspector] public PlayerState playerState;
     private PlayerComponent[] components;
 
     private void Start()

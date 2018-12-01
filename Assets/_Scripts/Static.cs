@@ -6,6 +6,8 @@ using System.Collections.Generic;
 
 public static class Static
 {
+    public static readonly string horizontalAxis = "Horizontal", verticalAxis = "Vertical";
+
     public static void SetAlpha(this MaskableGraphic graphics, float alpha)
     {
         Color color = graphics.color;

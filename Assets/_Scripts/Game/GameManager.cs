@@ -8,12 +8,14 @@ public enum GameState
     Event,
 }
 
+// An instance for managing main game behavior (player & camera)
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
     public GameState State { get; private set; }
-    private Player player;
+    [HideInInspector] public Player player;
+    [HideInInspector] public GameCamera gameCamera;
 
     private void Awake()
     {
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
 
         // Load variables
         player = GetComponentInChildren<Player>();
+        gameCamera = GetComponentInChildren<GameCamera>();
     }
 
     public void SetState(GameState state)
@@ -39,6 +42,7 @@ public class GameManager : MonoBehaviour
             return;
 
         player.HandleUpdate();
+        gameCamera.HandleUpdate();
 	}
 
     private void FixedUpdate()
@@ -47,5 +51,6 @@ public class GameManager : MonoBehaviour
             return;
 
         player.HandleFixedUpdate();
+        gameCamera.HandleFixedUpdate();
     }
 }
