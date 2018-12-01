@@ -17,6 +17,9 @@ public class Spirit : MonoBehaviour {
     public float soulModifier = 1.0f;
     public float attackForce = 4.0f;
 
+    [Header("Audio")]
+    public AudioSource explosionSource;
+
     [HideInInspector] public SpiritState state;
     [HideInInspector] public Rigidbody rBody;
 
@@ -25,7 +28,7 @@ public class Spirit : MonoBehaviour {
     [HideInInspector] public float flightForce;
     [HideInInspector] public Vector3 flightDirection;
     private bool flightCheck = false;
-    private float flightFriction = 6.0f, flightMass = 40.0f, normalMass,
+    private float flightFriction = 40.0f, flightMass = 40.0f, normalMass,
         explosionLimit = 4;
 
     // Glow/Shader variables
@@ -171,11 +174,24 @@ public class Spirit : MonoBehaviour {
         state = SpiritState.Flight;
         flightCheck = false;
         rBody.mass = flightMass;
+
+        // Soul reduction
+        if (soul < source.soul)
+            source.ReduceSoul(4);
+        else if (soul == source.soul)
+            source.ReduceSoul(8);
+        else
+            source.ReduceSoul(12);
     }
 
     public void Explode()
     {
         // TODO:
+        if (explosionSource)
+        {
+            explosionSource.transform.SetParent(null);
+            explosionSource.Play();
+        }
         gameObject.SetActive(false);
     }
 

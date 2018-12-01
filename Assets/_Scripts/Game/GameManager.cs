@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum GameState
 {
@@ -22,9 +23,10 @@ public class GameManager : MonoBehaviour
 
     [Header("Attack Scene")]
     public Vector3 asLookTargetOffset = new Vector3(0, 1, 0);
-    public Vector3 asCameraDelta = new Vector3(1, 1, -5);
+    public Vector3[] asCameraDelta;
     public float asSlowScale = 0.2f, asCameraMoveTime = 0.5f,
         asUpdateTime = 0.02f, asPauseTime = 1.0f;
+    public Image asFocusImage;
 
     private void Awake()
     {
@@ -39,6 +41,10 @@ public class GameManager : MonoBehaviour
         player = GetComponentInChildren<Player>();
         gameCamera = GetComponentInChildren<GameCamera>();
         CameraBounds = FindObjectOfType<CameraBounds>();
+
+        // Attack scene focus
+        asFocusImage.gameObject.SetActive(false);
+        Static.SetAlpha(asFocusImage, 0.0f);
     }
 
     public void SetState(GameState state)
@@ -86,7 +92,7 @@ public class GameManager : MonoBehaviour
         var cameraTransform = gameCamera.Camera.transform;
         var originalCameraPos = cameraTransform.position;
         var originalCameraRot = cameraTransform.rotation;
-        var cameraTargetPos = player.transform.position + player.transform.rotation * asCameraDelta;
+        var cameraTargetPos = player.transform.position + player.transform.rotation * asCameraDelta.GetRandom();
 
         Time.timeScale = asSlowScale;
         yield return _MoveCamera(cameraTransform, cameraTargetPos, targetSpirit.transform);
@@ -100,17 +106,20 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator _MoveCamera(Transform cameraTransform, Vector3 targetPos, Transform targetSpiritTransform)
     {
+        asFocusImage.gameObject.SetActive(true);
         var t = 0.0f;
         var startPos = cameraTransform.position;
 
         while(t < asCameraMoveTime)
         {
             t += asUpdateTime;
-            cameraTransform.position = Vector3.Lerp(startPos, targetPos, t / asCameraMoveTime);
+            var ratio = t / asCameraMoveTime;
+            cameraTransform.position = Vector3.Lerp(startPos, targetPos, ratio);
 
             var lookTargetPos = (player.transform.position + targetSpiritTransform.position) / 2
             + asLookTargetOffset;
             cameraTransform.LookAt(lookTargetPos);
+            asFocusImage.SetAlpha(ratio);
             yield return new WaitForSecondsRealtime(asUpdateTime);
         }
 
@@ -138,7 +147,9 @@ public class GameManager : MonoBehaviour
             var ratio = t / asCameraMoveTime;
             cameraTransform.position = Vector3.Lerp(startPos, cameraPos, ratio);
             cameraTransform.rotation = Quaternion.Lerp(startRot, cameraRot, ratio);
+            asFocusImage.SetAlpha(1.0f - ratio);
             yield return new WaitForSecondsRealtime(asUpdateTime);
         }
+        asFocusImage.gameObject.SetActive(false);
     }
 }

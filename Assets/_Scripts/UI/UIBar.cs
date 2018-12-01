@@ -6,9 +6,26 @@ using UnityEngine.UI;
 public class UIBar : MonoBehaviour {
 
     [SerializeField] private Image barImage;
+    [SerializeField] private float fillChangeSpeed = 0.01f;
+    private float targetFill;
 
-	public void SetFill(float fill)
+    public void SetFill(float fill, bool instant = false)
     {
-        barImage.fillAmount = fill; 
+        if(instant)
+        {
+            barImage.fillAmount = fill;
+        } 
+        targetFill = fill; 
+    }
+
+    private void Update()
+    {
+        if(barImage.fillAmount < targetFill)
+        {
+            barImage.fillAmount += Mathf.Min(targetFill - barImage.fillAmount, fillChangeSpeed);
+        } else if(barImage.fillAmount > targetFill)
+        {
+            barImage.fillAmount -= Mathf.Min(barImage.fillAmount - targetFill, fillChangeSpeed);
+        }
     }
 }
