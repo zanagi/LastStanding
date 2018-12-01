@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     public GameState State { get; private set; }
     public bool IsIdle { get { return State == GameState.Idle; } }
+    public CameraBounds CameraBounds { get; private set; }
 
     [HideInInspector] public Player player;
     [HideInInspector] public GameCamera gameCamera;
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
         // Load variables
         player = GetComponentInChildren<Player>();
         gameCamera = GetComponentInChildren<GameCamera>();
+        CameraBounds = FindObjectOfType<CameraBounds>();
     }
 
     public void SetState(GameState state)

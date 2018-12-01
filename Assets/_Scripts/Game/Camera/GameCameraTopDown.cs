@@ -25,7 +25,11 @@ public class GameCameraTopDown : GameCamera {
     {
         var targetPos = targetTransform.position + cameraOffset;
         var smoothPos = Vector3.Lerp(transform.position, targetPos, moveSpeed * time);
-        transform.position = smoothPos;
+
+        if(GameManager.Instance.CameraBounds)
+            transform.position = GameManager.Instance.CameraBounds.GetPosInBounds(smoothPos, cameraOffset);
+        else
+            transform.position = smoothPos;
     }
 
     public Ray GetScreenRay(Vector3 pos)
