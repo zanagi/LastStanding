@@ -11,11 +11,17 @@ public enum PlayerState
 public class Player : MonoBehaviour
 {
     [HideInInspector] public PlayerState playerState;
+
     private PlayerComponent[] components;
+    private Spirit spirit;
+
+    public float HealthRatio { get { return spirit.HealthRatio; } }
+    public float SoulRatio { get { return spirit.SoulRatio; } }
 
     private void Start()
     {
         components = GetComponentsInChildren<PlayerComponent>(true);
+        spirit = GetComponent<Spirit>();
     }
 
     public void HandleUpdate()

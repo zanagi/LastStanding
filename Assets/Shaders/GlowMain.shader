@@ -5,7 +5,7 @@
         _BaseColor("BaseColor", Color) = (1, 1, 1, 1)
         _MainTex("Base (RGB)", 2D) = "white" {}
         _RimColor("Rim Color", Color) = (1, 1, 1, 1)
-        _RimPower("Rim Power", Range(1.0, 6.0)) = 3.0
+        _RimPower("Rim Power", Range(1, 4.0)) = 1.0
 
     }
     SubShader
@@ -39,7 +39,7 @@
             }
             else 
             {
-                o.Emission = _RimColor.rgb * pow(rim, _RimPower);
+                o.Emission = _RimColor.rgb * pow(rim, _RimPower / 2.0);
             }
         }
         ENDCG
