@@ -25,8 +25,8 @@ public class Spirit : MonoBehaviour {
     [HideInInspector] public float flightForce;
     [HideInInspector] public Vector3 flightDirection;
     private bool flightCheck = false;
-    private float flightFriction = 5.0f, flightMass = 10.0f, normalMass,
-        explosionLimit = 3;
+    private float flightFriction = 6.0f, flightMass = 40.0f, normalMass,
+        explosionLimit = 4;
 
     // Glow/Shader variables
     private static string soulEffectName = "_RimPower", baseColorName = "_BaseColor", glowColorName = "_RimColor";
@@ -88,14 +88,16 @@ public class Spirit : MonoBehaviour {
 
     protected virtual void Update()
     {
+        // Flight hass priority
+        CheckFlight();
+
         if (!GameManager.Instance.IsIdle)
             return;
 
         CheckSoul();
         CheckHealth();
-        CheckFlight();
     }
-
+    
     private void CheckHealth()
     {
         if(health <= 0)
@@ -174,7 +176,7 @@ public class Spirit : MonoBehaviour {
     public void Explode()
     {
         // TODO:
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     // Check flight explosion

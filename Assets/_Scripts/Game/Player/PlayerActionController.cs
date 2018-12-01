@@ -8,6 +8,10 @@ public class PlayerActionController : PlayerComponent
     [SerializeField] private float groundCastDist = 30.0f;
     [SerializeField] private bool lookAtCastTarget = false;
 
+    [SerializeField] private LayerMask spiritLayer;
+    [SerializeField] private Transform frontBoxTransform;
+    [SerializeField] private Vector3 frontBoxExtents;
+
     public override void HandleUpdate()
     {
         if (player.State != SpiritState.Idle)
@@ -20,6 +24,7 @@ public class PlayerActionController : PlayerComponent
 
             if(lookAtCastTarget)
                 SetDirection();
+            CheckFront();
         }
     }
 
@@ -32,6 +37,32 @@ public class PlayerActionController : PlayerComponent
     public void SetPlayerAttack()
     {
         player.State = SpiritState.Attack;
+    }
+
+    // Check if possible target in front
+    private void CheckFront()
+    {
+        var colliders = Physics.OverlapBox(frontBoxTransform.position, frontBoxExtents, transform.rotation,
+            spiritLayer);
+        var pos = transform.position;
+        
+        Spirit targetSpirit = null;
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            var spirit = colliders[i].GetComponent<Spirit>();
+
+            if (!targetSpirit || Vector3.SqrMagnitude(spirit.transform.position - pos)
+                    < Vector3.SqrMagnitude(targetSpirit.transform.position - pos))
+            {
+                targetSpirit = spirit;
+            }
+        }
+        if (targetSpirit)
+        {
+            GameManager.Instance.InitAttackScene(targetSpirit);
+            return;
+        }
     }
 
     // Set player to look at the direction mouse is pointing at
@@ -47,4 +78,6 @@ public class PlayerActionController : PlayerComponent
             player.transform.LookAt(pos);
         }
     }
+
+    
 }

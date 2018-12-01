@@ -205,6 +205,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1322513829150132
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4601385003188102}
+  m_Layer: 10
+  m_Name: FrontBoxPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1328723380048302
 GameObject:
   m_ObjectHideFlags: 1
@@ -910,6 +925,7 @@ Transform:
   - {fileID: 4220580675937076}
   - {fileID: 224666547078511674}
   - {fileID: 4795632754047962}
+  - {fileID: 4601385003188102}
   m_Father: {fileID: 4367661091033088}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1105,6 +1121,19 @@ Transform:
   - {fileID: 4729153873234148}
   m_Father: {fileID: 4663916731140066}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4601385003188102
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1322513829150132}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.03, y: 0.5, z: 0.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4291415049990010}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4613956299088540
 Transform:
@@ -2202,6 +2231,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   gameCamera: {fileID: 0}
+  asLookTargetOffset: {x: 0, y: 1, z: 0}
+  asCameraDelta: {x: 1, y: 0.5, z: -2}
+  asSlowScale: 0.5
+  asCameraMoveTime: 0.4
+  asUpdateTime: 0.02
+  asPauseTime: 1
 --- !u!114 &114117381161222114
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2358,7 +2393,7 @@ MonoBehaviour:
   soul: 100
   level: 1
   soulModifier: 1
-  attackForce: 4
+  attackForce: 10
   state: 0
   rBody: {fileID: 0}
   attacker: {fileID: 0}
@@ -2543,6 +2578,11 @@ MonoBehaviour:
     m_Bits: 32768
   groundCastDist: 30
   lookAtCastTarget: 0
+  spiritLayer:
+    serializedVersion: 2
+    m_Bits: 8192
+  frontBoxTransform: {fileID: 4601385003188102}
+  frontBoxExtents: {x: 0.1, y: 0.5, z: 0.3}
 --- !u!135 &135114509471420014
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -2550,10 +2590,10 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1836778400635688}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.8
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136400799232352490
 CapsuleCollider:
