@@ -9,30 +9,21 @@ public class PlayerMoveController : PlayerComponent
 
     [SerializeField] private float speed = 4.0f;
     private Rigidbody rBody;
-
-    [Header("Animation")]
-    [SerializeField] private string idleStateName = "Idle";
-    [SerializeField] private string moveStateName = "Run";
-    [SerializeField] private float moveTransitionTime = 0.2f;
-    [SerializeField] private float stopTransitionTime = 0f;
-    private Animator animator;
-    private string moveBoolName = "Moving";
-
+    
     [Header("Audio")]
     [SerializeField] private AudioSource footstepSource;
 
     private void Start()
     {
         rBody = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
     }
 
-    public override void HandleUpdate(Player player)
+    public override void HandleUpdate()
     {
         HandleMove(player);
     }
 
-    public override void HandleFixedUpdate(Player player)
+    public override void HandleFixedUpdate()
     {
     }
 
@@ -40,7 +31,7 @@ public class PlayerMoveController : PlayerComponent
     {
         if (player.State != SpiritState.Idle)
         {
-            Stop();
+            Stop(player);
             return;
         }
 
@@ -58,23 +49,21 @@ public class PlayerMoveController : PlayerComponent
 
             if (!Moving)
             {
-                animator.CrossFade(moveStateName, moveTransitionTime);
                 Moving = true;
-                // animator.SetBool(moveBoolName, true);
+                player.PlayMoveAnimation();
             }
         }
         else
         {
-            Stop();
+            Stop(player);
+            player.PlayIdleAnimation();
         }
     }
 
-    private void Stop()
+    private void Stop(Player player)
     {
         if (Moving)
         {
-            // animator.SetBool(moveBoolName, false);
-            animator.CrossFade(idleStateName, stopTransitionTime);
             Moving = false;
             rBody.velocity = new Vector3(0, rBody.velocity.y, 0);
         }

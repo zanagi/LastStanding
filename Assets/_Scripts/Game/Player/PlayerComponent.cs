@@ -4,6 +4,13 @@ using UnityEngine;
 
 public abstract class PlayerComponent : MonoBehaviour
 {
-    public virtual void HandleUpdate(Player player) { }
-    public virtual void HandleFixedUpdate(Player player) { }
+    protected Player player;
+
+    private void Awake()
+    {
+        player = GetComponentInParent<Player>();
+    }
+
+    public virtual void HandleUpdate() { }
+    public virtual void HandleFixedUpdate() { }
 }

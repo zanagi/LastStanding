@@ -57,4 +57,12 @@ public class GameManager : MonoBehaviour
         player.HandleFixedUpdate();
         gameCamera.HandleFixedUpdate();
     }
+
+    private void LateUpdate()
+    {
+        if (State != GameState.Idle)
+            return;
+
+        player.HandleLateUpdate();
+    }
 }
