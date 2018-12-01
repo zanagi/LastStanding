@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public GameState State { get; private set; }
+    public bool IsIdle { get { return State == GameState.Idle; } }
+
     [HideInInspector] public Player player;
     [HideInInspector] public GameCamera gameCamera;
 
