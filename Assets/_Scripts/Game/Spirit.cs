@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Spirit : MonoBehaviour {
 
-    private static int maxHealth = 100, maxSoul = 100;
+    private static int maxHealth = 100, maxSoul = 100, levelExp = 100;
 
     [Range(0, 100)] public int health = 100;
     [Range(0, 100)] public int soul = 100;
-    public int powerLevel = 1;
-    public SpiritLevelIndicator indicatorPrefab;
+
+    [Header("Level")]
+    public int level = 1;
+    private int exp = 0;
 
     [Header("Class specific values")]
     public float soulModifier = 1.0f;
@@ -37,6 +39,7 @@ public class Spirit : MonoBehaviour {
     {
         var renderers = GetComponentsInChildren<Renderer>();
 
+        // Set materials
         materials = new Material[renderers.Length];
         for(int i = 0; i < renderers.Length; i++)
         {
@@ -78,9 +81,32 @@ public class Spirit : MonoBehaviour {
         previousSoul = soul;
     }
 
+
+    public void AddSoul(int amount)
+    {
+        if (amount <= 0)
+            return;
+        soul = Mathf.Clamp(soul + amount, 0, 100);
+    }
+
     public void ReduceSoul(int amount)
     {
+        if (amount <= 0)
+            return;
         soul = Mathf.Clamp(soul - (int)(soulModifier * amount), 0, 100);
+    }
+    
+    public void AddExp(int amount)
+    {
+        if (amount <= 0)
+            return;
+        exp += amount;
+
+        if (exp >= levelExp)
+        {
+            exp -= levelExp;
+            level++;
+        }
     }
 
     public void Explode()

@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class SpiritLevelIndicator : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [SerializeField] private TextMesh text;
+
+    public void SetLevel(int level)
+    {
+        text.text = level.ToString();
+    }
 }
