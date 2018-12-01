@@ -537,6 +537,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1135592762}
+  - component: {fileID: 1135592763}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -563,6 +564,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1135592763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1135592761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 354ed090ca001e74ab7de1b010aea33c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  count: 40
+  spiritPrefabs:
+  - {fileID: 114580602717649344, guid: cc3ca3eb0cf6e834eb3c12de1ccbd51a, type: 2}
+  baseColors:
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.94998825, b: 0, a: 1}
+  - {r: 0.7075472, g: 0.36378607, b: 0.4751648, a: 1}
+  - {r: 0.2520915, g: 0.6269116, b: 0.9716981, a: 1}
+  - {r: 0.0035599943, g: 0.754717, b: 0.1017671, a: 1}
+  rimColors:
+  - {r: 1, g: 0.5691917, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.8489032, a: 1}
+  - {r: 0, g: 0.7627773, b: 1, a: 1}
+  minRadius: 4
+  maxRadius: 13
 --- !u!1001 &1320299241
 Prefab:
   m_ObjectHideFlags: 0
@@ -643,6 +672,15 @@ Prefab:
     - target: {fileID: 4367661091033088, guid: 6325efc81a7d63249bd7baa6fee9b998, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838321040259616, guid: 6325efc81a7d63249bd7baa6fee9b998, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224666547078511674, guid: 6325efc81a7d63249bd7baa6fee9b998,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6325efc81a7d63249bd7baa6fee9b998, type: 2}

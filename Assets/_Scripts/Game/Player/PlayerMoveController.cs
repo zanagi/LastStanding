@@ -82,6 +82,7 @@ public class PlayerMoveController : PlayerComponent
 
     public void PlayFootstep()
     {
-        footstepSource.Play();
+        if(footstepSource)
+            footstepSource.Play();
     }
 }

@@ -20,7 +20,7 @@ public class Spirit : MonoBehaviour {
     public SpiritState state;
     
     // Glow/Shader variables
-    private static string soulEffectName = "_RimPower";
+    private static string soulEffectName = "_RimPower", baseColorName = "_BaseColor", glowColorName = "_RimColor";
     private static float maxSoulEffect = 1, minSoulEffect = 4;
     private Material[] materials;
     private int previousSoul;
@@ -37,6 +37,9 @@ public class Spirit : MonoBehaviour {
 
     private void Start()
     {
+        if (materials != null)
+            return;
+
         var renderers = GetComponentsInChildren<Renderer>();
 
         // Set materials
@@ -51,9 +54,24 @@ public class Spirit : MonoBehaviour {
 
     private void SetGlow()
     {
+        if (materials == null)
+            Start();
+
         for (int i = 0; i < materials.Length; i++)
         {
             materials[i].SetFloat(soulEffectName, Mathf.Lerp(minSoulEffect, maxSoulEffect, soul / 100.0f));
+        }
+    }
+
+    public void SetColors(Color baseColor, Color glowColor)
+    {
+        if (materials == null)
+            Start();
+
+        for (int i = 0; i < materials.Length; i++)
+        {
+            materials[i].SetColor(baseColorName, baseColor);
+            materials[i].SetColor(glowColorName, glowColor);
         }
     }
 
