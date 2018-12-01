@@ -5,5 +5,7 @@ using UnityEngine;
 public enum SpiritState
 {
     Idle,
-    Action
+    Action,
+    Attack,
+    Flight
 }

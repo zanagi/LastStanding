@@ -6,6 +6,7 @@ public class PlayerActionController : PlayerComponent
 {
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float groundCastDist = 30.0f;
+    [SerializeField] private bool lookAtCastTarget = false;
 
     public override void HandleUpdate()
     {
@@ -16,6 +17,9 @@ public class PlayerActionController : PlayerComponent
         {
             player.State = SpiritState.Action;
             player.PlayAttackAnimation();
+
+            if(lookAtCastTarget)
+                SetDirection();
         }
     }
 
@@ -23,6 +27,11 @@ public class PlayerActionController : PlayerComponent
     {
         player.State = SpiritState.Idle;
         player.PlayIdleAnimation();
+    }
+
+    public void SetPlayerAttack()
+    {
+        player.State = SpiritState.Attack;
     }
 
     // Set player to look at the direction mouse is pointing at

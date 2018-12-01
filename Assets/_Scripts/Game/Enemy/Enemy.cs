@@ -13,4 +13,9 @@ public class Enemy : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void TakeDamage(Spirit source, int amount)
+    {
+
+    }
 }

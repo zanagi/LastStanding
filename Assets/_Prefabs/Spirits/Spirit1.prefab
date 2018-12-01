@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4945782101246562}
   - component: {fileID: 33603339642533090}
   - component: {fileID: 23931987069010584}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Mesh (LegL2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4436128892499894}
   - component: {fileID: 33318748653674486}
   - component: {fileID: 23748899038134698}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Mesh (ArmL)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4572428836594454}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4024568833739110}
   - component: {fileID: 33558900731116214}
   - component: {fileID: 23249224640049920}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Mesh (ArmL)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4448585814535244}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: LegR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4181806601673734}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: LegR2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4491261554118204}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: ArmL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 4895506256758336}
   - component: {fileID: 33018265774169428}
   - component: {fileID: 23970276859538712}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Mesh (Body)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 95973135139970700}
   - component: {fileID: 136225811598331216}
   - component: {fileID: 114580602717649344}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Spirit1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4867475753961118}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: ForearmL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 4280271845126070}
   - component: {fileID: 33448093993130302}
   - component: {fileID: 23152255334852380}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Mesh (Spine)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 4951897011851658}
   - component: {fileID: 33272772503420174}
   - component: {fileID: 23286616732020948}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Mesh (LegL)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 4779976488354054}
   - component: {fileID: 33996134905340754}
   - component: {fileID: 23590216758335988}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Mesh (ForearmL)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 4053453286786228}
   - component: {fileID: 33255818304390994}
   - component: {fileID: 23205792025299142}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Mesh (LegR2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +249,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4280752970320588}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 4969499890772786}
   - component: {fileID: 33254486009793388}
   - component: {fileID: 23889054883436534}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Mesh (ForearmL)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4584147402732888}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: LegL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,7 +296,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4860446696642608}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4883911728064890}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: FootR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4745438264817640}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 4263739512020328}
   - component: {fileID: 33201915053266978}
   - component: {fileID: 23369861174313378}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Mesh (LegR)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4042078479947662}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: ArmR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4459733594334122}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 4840065988816328}
   - component: {fileID: 33821597004970732}
   - component: {fileID: 23202794297561990}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Mesh (Head)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,7 +405,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4412346861220908}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,7 +420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4140540043764736}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: LegL2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -435,7 +435,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4133151362610222}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4323673651273464}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: ForearmL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +467,7 @@ GameObject:
   - component: {fileID: 4869271873616980}
   - component: {fileID: 33672528105283970}
   - component: {fileID: 23017916583025762}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Mesh (FootR)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 4040496333641842}
   - component: {fileID: 33276281976732246}
   - component: {fileID: 23960334124883576}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Mesh (Neck)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 4247372689534862}
   - component: {fileID: 33540870118122572}
   - component: {fileID: 23516138549947172}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Mesh (FootL)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -516,7 +516,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4550997137963830}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: FootL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1565,8 +1565,8 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1152179564604114}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 1200
+  m_Drag: 0.1
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -1606,7 +1606,12 @@ MonoBehaviour:
   soul: 100
   level: 1
   soulModifier: 1
+  attackForce: 4
   state: 0
+  rBody: {fileID: 0}
+  attacker: {fileID: 0}
+  flightForce: 0
+  flightDirection: {x: 0, y: 0, z: 0}
 --- !u!136 &136225811598331216
 CapsuleCollider:
   m_ObjectHideFlags: 1

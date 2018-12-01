@@ -15,13 +15,22 @@ public class Spirit : MonoBehaviour {
 
     [Header("Class specific values")]
     public float soulModifier = 1.0f;
+    public float attackForce = 4.0f;
 
-    [HideInInspector]
-    public SpiritState state;
-    
+    [HideInInspector] public SpiritState state;
+    [HideInInspector] public Rigidbody rBody;
+
+    // Received attack from other
+    [HideInInspector] public Spirit attacker;
+    [HideInInspector] public float flightForce;
+    [HideInInspector] public Vector3 flightDirection;
+    private bool flightCheck = false;
+    private float flightFriction = 5.0f, flightMass = 10.0f, normalMass,
+        explosionLimit = 3;
+
     // Glow/Shader variables
     private static string soulEffectName = "_RimPower", baseColorName = "_BaseColor", glowColorName = "_RimColor";
-    private static float maxSoulEffect = 1, minSoulEffect = 4;
+    private static float maxSoulEffect = 1, minSoulEffect = 4, flightMinSqr = 0.01f;
     private Material[] materials;
     private int previousSoul;
 
@@ -40,9 +49,11 @@ public class Spirit : MonoBehaviour {
         if (materials != null)
             return;
 
-        var renderers = GetComponentsInChildren<Renderer>();
+        rBody = GetComponent<Rigidbody>();
+        normalMass = rBody.mass;
 
         // Set materials
+        var renderers = GetComponentsInChildren<Renderer>();
         materials = new Material[renderers.Length];
         for(int i = 0; i < renderers.Length; i++)
         {
@@ -82,6 +93,7 @@ public class Spirit : MonoBehaviour {
 
         CheckSoul();
         CheckHealth();
+        CheckFlight();
     }
 
     private void CheckHealth()
@@ -99,6 +111,27 @@ public class Spirit : MonoBehaviour {
         previousSoul = soul;
     }
 
+    private void CheckFlight()
+    {
+        if (state == SpiritState.Flight)
+        {
+            if (flightForce <= 0 || (flightCheck && rBody.velocity.sqrMagnitude < flightMinSqr))
+            {
+                StopFlight();
+                return;
+            }
+            rBody.velocity = flightDirection * flightForce;
+            flightForce -= Time.deltaTime * flightFriction;
+            flightCheck = true;
+        }
+    }
+
+    private void StopFlight()
+    {
+        state = SpiritState.Idle;
+        rBody.velocity = new Vector3(0, rBody.velocity.y, 0);
+        rBody.mass = normalMass;
+    }
 
     public void AddSoul(int amount)
     {
@@ -127,8 +160,38 @@ public class Spirit : MonoBehaviour {
         }
     }
 
+    public void ReceiveAttack(Spirit source)
+    {
+        attacker = source;
+        var impulse = source.transform.forward * source.attackForce;
+        flightForce = impulse.magnitude;
+        flightDirection = impulse / flightForce;
+        state = SpiritState.Flight;
+        flightCheck = false;
+        rBody.mass = flightMass;
+    }
+
     public void Explode()
     {
         // TODO:
+        Destroy(gameObject);
+    }
+
+    // Check flight explosion
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(state == SpiritState.Flight)
+        {
+            var enemy = collision.collider.GetComponent<Enemy>();
+
+            if(enemy)
+            {
+                // TODO: Enemy take damage
+                Explode();
+            } else if(flightForce >= explosionLimit)
+            {
+                Explode();
+            }
+        }
     }
 }

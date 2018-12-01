@@ -16,10 +16,10 @@ TagManager:
   - PostProcessing
   - 
   - Player
+  - PlayerAttack
   - 
-  - 
-  - 
-  - 
+  - Spirit
+  - SpiritAttack
   - Ground
   - 
   - 
