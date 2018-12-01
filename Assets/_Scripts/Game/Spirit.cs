@@ -9,20 +9,19 @@ public class Spirit : MonoBehaviour {
     [Range(0, 100)] public int health = 100;
     [Range(0, 100)] public int soul = 100;
     public int powerLevel = 1;
+    public SpiritLevelIndicator indicatorPrefab;
 
     [Header("Class specific values")]
     public float soulModifier = 1.0f;
 
     [HideInInspector]
     public SpiritState state;
-
+    
     // Glow/Shader variables
     private static string soulEffectName = "_RimPower";
     private static float maxSoulEffect = 1, minSoulEffect = 4;
-
     private Material[] materials;
     private int previousSoul;
-
 
     public float HealthRatio
     {
