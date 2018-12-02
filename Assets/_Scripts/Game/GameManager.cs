@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public Player player;
     [HideInInspector] public GameCamera gameCamera;
+    [HideInInspector] public UICanvas uiCanvas;
 
     [Header("Attack Scene")]
     public Vector3 asLookTargetOffset = new Vector3(0, 1, 0);
@@ -28,6 +29,9 @@ public class GameManager : MonoBehaviour
         asUpdateTime = 0.02f, asPauseTime = 1.0f;
     public Image asFocusImage;
     public AudioSource asFocusSource;
+
+    // Spirit list
+    [HideInInspector] public List<Spirit> spirits = new List<Spirit>();
 
     private void Awake()
     {
@@ -41,6 +45,7 @@ public class GameManager : MonoBehaviour
         // Load variables
         player = GetComponentInChildren<Player>();
         gameCamera = GetComponentInChildren<GameCamera>();
+        uiCanvas = GetComponentInChildren<UICanvas>();
         CameraBounds = FindObjectOfType<CameraBounds>();
 
         // Attack scene focus

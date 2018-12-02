@@ -61,7 +61,7 @@ public class PlayerActionController : PlayerComponent
                 targetSpirit = spirit;
             }
         }
-        if (targetSpirit)
+        if (targetSpirit && Random.Range(0f, 1f) < 0.5f)
         {
             GameManager.Instance.InitAttackScene(targetSpirit);
             return;

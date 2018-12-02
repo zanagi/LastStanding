@@ -65,6 +65,9 @@ public class Spirit : MonoBehaviour {
         }
         SetGlow();
         previousSoul = soul;
+
+        // Add to list
+        GameManager.Instance.spirits.Add(this);
     }
 
     private void SetGlow()
@@ -108,6 +111,20 @@ public class Spirit : MonoBehaviour {
         {
             Explode();
         }
+    }
+
+    public void TakeDamage(Enemy enemy)
+    {
+        var damage = enemy.strength;
+
+        if(SoulRatio >= 0.7f)
+        {
+            damage /= 2;
+        } else if (SoulRatio <= 0.3f)
+        {
+            damage *= 2;
+        }
+        health = Mathf.Max(0, health - damage);
     }
 
     private void CheckSoul()
@@ -197,6 +214,9 @@ public class Spirit : MonoBehaviour {
             explosionSource.Play();
         }
         gameObject.SetActive(false);
+
+        // Remove from list
+        GameManager.Instance.spirits.Remove(this);
     }
 
     // Check flight explosion

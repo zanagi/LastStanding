@@ -4,18 +4,156 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [SerializeField]
+    protected float visionRange = 10;
 
+    [SerializeField]
+    protected float maxActionDelay = 1.0f;  // The time it takes for the enemy to take a new action [0, maxAttackDelay]
+    protected float actionDelay;
+
+    [SerializeField]
+    private bool hasAction = true;
+
+    public float attackRange = 0.6f;
+    public float wanderTime = 1.0f, attackTime = 0.5f, maxMoveTime = 3.0f, speed;
+    public bool attacking = false;
+
+    [Header("Stats")]
+    public int hp = 100;
+    public int strength = 10, killExp = 50;
+    public UIEnemyIcon icon;
+
+    protected EnemyCollider[] colliders;
+    protected Rigidbody rBody;
+
+    protected void Start()
+    {
+        colliders = GetComponentsInChildren<EnemyCollider>();
+        rBody = GetComponent<Rigidbody>();
+        Init();
+
+        // Spawn icon
+        icon = Instantiate(icon, GameManager.Instance.uiCanvas.iconContainer);
+        icon.SetOrientation(GameManager.Instance.player.transform.position, transform.position);
+    }
+
+    protected virtual void Init()
+    {
+        actionDelay = Random.Range(maxActionDelay / 2, maxActionDelay);
+        hasAction = attacking = false;
+
+        for (int i = 0; i < colliders.Length; i++)
+            colliders[i].ResetCollider();
+    }
+
+    protected virtual void StopAction()
+    {
+        Init();
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        if (hasAction || !GameManager.Instance.IsIdle)
+            return;
+
+        actionDelay -= Time.fixedDeltaTime;
+        if (actionDelay <= 0)
+        {
+            StartCoroutine(DoAction());
+        }
+    }
+
+    protected virtual void LateUpdate()
+    {
+        if (!GameManager.Instance.IsIdle)
+            return;
+        icon.SetOrientation(GameManager.Instance.player.transform.position, transform.position);
+    }
+
+    protected virtual IEnumerator DoAction()
+    {
+        hasAction = true;
+        yield return MoveToPlayer(attackRange);
+
+        attacking = true;
+        yield return Attack();
+        attacking = false;
+        
+        Init();
+    }
+
+    protected virtual IEnumerator MoveToPlayer(float range)
+    {
+        // Find target spirit
+        var spirits = GameManager.Instance.spirits;
+        var count = spirits.Count;
+        Spirit target = null;
+        for(int i = 0; i < count; i++)
+        {
+            if(Vector3.SqrMagnitude(transform.position - spirits[i].transform.position)
+                < visionRange)
+            {
+                target = spirits[i];
+                break;
+            }
+        }
+
+        if(!target)
+        {
+            // Find target with the lowest soul
+            target = spirits[0];
+            for (int i = 1; i < count; i++)
+            {
+                if (spirits[i].soul < target.soul)
+                {
+                    target = spirits[i];
+                    break;
+                }
+            }
+        }
+
+        // Move
+        var sqrDist = range * range;
+        transform.LookAt(target.transform);
+        while (Vector3.SqrMagnitude(transform.position - target.transform.position) > sqrDist)
+        {
+            MoveTowards(target.transform.position);
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    protected void MoveTowards(Vector3 position)
+    {
+        if (!rBody)
+            return;
+
+        transform.LookAt(position);
+        rBody.velocity = Vector3.zero;
+        rBody.AddForce(transform.forward * speed);
+    }
+
+    protected virtual IEnumerator Attack()
+    {
+        // Rotation attack
+        var t = 0.0f;
+        while (t < attackTime)
+        {
+            var delta = Mathf.Min(Time.fixedDeltaTime / attackTime, attackTime - t);
+            t += Time.fixedDeltaTime;
+            transform.Rotate(new Vector3(0, delta * 360, 0));
+            yield return new WaitForFixedUpdate();
+        }
+    }
+    
     public void TakeDamage(Spirit source, int amount)
     {
+        var damage = Mathf.Min(hp, amount);
+        hp -= damage;
+        source.AddExp(damage);
 
+        if (hp <= 0)
+        {
+            source.AddExp(killExp);
+        }
     }
 }

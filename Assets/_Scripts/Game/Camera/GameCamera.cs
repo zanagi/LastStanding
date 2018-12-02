@@ -12,9 +12,13 @@ public abstract class GameCamera : MonoBehaviour {
     [SerializeField] protected Transform targetTransform;
     [SerializeField] protected float moveSpeed = 4;
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         Camera = GetComponentInChildren<Camera>();
+    }
+
+    protected virtual void Start()
+    {
     }
 
     public Ray GetScreenRay(Vector3 pos)
