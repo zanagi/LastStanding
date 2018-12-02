@@ -249,6 +249,7 @@ public class Spirit : MonoBehaviour {
             explosionSource.transform.SetParent(null);
             explosionSource.Play();
         }
+        GameManager.Instance.uiCanvas.SpawnExplosionSound(transform.position);
 
         if(ai)
             gameObject.SetActive(false);

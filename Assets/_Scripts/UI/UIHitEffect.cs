@@ -6,21 +6,21 @@ public class UIHitEffect : MonoBehaviour {
 
     public AnimationCurve scaleCurve;
     public float time = 0.3f;
-    private float currentTime;
     
 	void Start () {
         transform.localScale = Vector3.zero;
+        StartCoroutine(Animate());
 	}
 	
-	void Update ()
+    private IEnumerator Animate()
     {
-        if (currentTime >= time)
-            return;
-
-        currentTime += Time.deltaTime;
-        transform.localScale = Vector3.one * scaleCurve.Evaluate(currentTime / time);
-
-        if (currentTime >= time)
-            Destroy(gameObject);
-	}
+        var t = 0.0f;
+        while (t < time)
+        {
+            t += GameManager.Instance.asUpdateTime;
+            transform.localScale = Vector3.one * scaleCurve.Evaluate(t / time);
+            yield return new WaitForSecondsRealtime(GameManager.Instance.asUpdateTime);
+        }
+        Destroy(gameObject);
+    }
 }

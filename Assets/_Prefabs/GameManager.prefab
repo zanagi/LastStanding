@@ -2835,9 +2835,9 @@ MonoBehaviour:
   - {x: 1.5, y: 1, z: -3}
   - {x: -2, y: 1, z: -4}
   asSlowScale: 0.5
-  asCameraMoveTime: 0.4
+  asCameraMoveTime: 0.3
   asUpdateTime: 0.02
-  asPauseTime: 1
+  asPauseTime: 0.6
   asFocusImage: {fileID: 114242829429356664}
   asFocusSource: {fileID: 82388211398992330}
   spirits: []
@@ -3192,6 +3192,8 @@ MonoBehaviour:
   hitSoundPrefab: {fileID: 1011365307689324, guid: ff0b6e8d0b933fa418ca579b389e38d6,
     type: 2}
   enemyHitSoundPrefab: {fileID: 1657800622613890, guid: 2cf9f1b49a9dc7e46a23e478bca34139,
+    type: 2}
+  explosionPrefab: {fileID: 114918247940962700, guid: 646a76c32843204438011c227631f22e,
     type: 2}
 --- !u!114 &114845447514939900
 MonoBehaviour:
