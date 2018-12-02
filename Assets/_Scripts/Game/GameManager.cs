@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     [Header("End")]
     public GameObject gameOverObject;
+    public bool end;
 
     [HideInInspector] public SceneSwitcher switcher;
 
@@ -58,7 +59,7 @@ public class GameManager : MonoBehaviour
         CameraBounds = FindObjectOfType<CameraBounds>();
         switcher = GetComponent<SceneSwitcher>();
         gameOverObject.SetActive(false);
-
+        
         // Attack scene focus
         asFocusImage.gameObject.SetActive(false);
         Static.SetAlpha(asFocusImage, 0.0f);
@@ -120,6 +121,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        end = true;
         State = GameState.Event;
         gameOverObject.SetActive(true);
     }

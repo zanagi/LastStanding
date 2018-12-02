@@ -25,6 +25,9 @@ public class LoadingScreen : Singleton<LoadingScreen> {
     {
         if (IsLoading)
             return;
+
+        // Ensure time scale stays normal
+        Time.timeScale = 1.0f;
         StartCoroutine(AnimateLoad(sceneName));
     }
 

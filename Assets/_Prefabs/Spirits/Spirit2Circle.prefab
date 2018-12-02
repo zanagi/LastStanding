@@ -878,7 +878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
-  health: 20
+  health: 50
   soul: 50
   soulModifier: 1
   attackForce: 4

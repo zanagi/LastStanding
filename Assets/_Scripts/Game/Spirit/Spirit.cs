@@ -135,6 +135,9 @@ public class Spirit : MonoBehaviour {
 
     public void TakeDamage(Enemy enemy)
     {
+        if (GameManager.Instance.end)
+            return;
+
         var damage = enemy.strength;
         var r = SoulRatio;
 

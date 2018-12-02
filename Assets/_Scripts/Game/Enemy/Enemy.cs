@@ -84,8 +84,6 @@ public class Enemy : MonoBehaviour {
 
     protected virtual void LateUpdate()
     {
-        if (!GameManager.Instance.IsIdle)
-            return;
         icon.SetOrientation(GameManager.Instance.player.transform.position, transform.position);
         statBlock.SetValues(transform.position, HealthRatio, statBlockMargin);
     }
@@ -119,7 +117,8 @@ public class Enemy : MonoBehaviour {
             if(Vector3.SqrMagnitude(transform.position - spirits[i].transform.position)
                 < visionRange)
             {
-                target = spirits[i];
+                if(!target || Random.Range(0f, 1f) < 0.5f)
+                    target = spirits[i];
                 break;
             }
         }
@@ -137,12 +136,15 @@ public class Enemy : MonoBehaviour {
                 }
             }
         }
-
+        
         // Move
         var sqrDist = range * range;
         transform.LookAt(target.transform);
-        while (Vector3.SqrMagnitude(transform.position - target.transform.position) > sqrDist)
+        var t = 0f;
+        while (Vector3.SqrMagnitude(transform.position - target.transform.position) > sqrDist
+            && t < maxMoveTime)
         {
+            t += Time.fixedDeltaTime;
             MoveTowards(target.transform.position);
             yield return new WaitForFixedUpdate();
         }
@@ -154,8 +156,9 @@ public class Enemy : MonoBehaviour {
             return;
 
         transform.LookAt(position);
+
         rBody.velocity = Vector3.zero;
-        rBody.AddForce(transform.forward * speed);
+        rBody.AddForce(transform.forward * speed, ForceMode.VelocityChange);
     }
 
     protected IEnumerator Attack()
@@ -184,6 +187,9 @@ public class Enemy : MonoBehaviour {
     
     public void TakeDamage(Spirit source, int amount)
     {
+        if (GameManager.Instance.end)
+            return;
+
         var damage = Mathf.Min(hp, amount);
         hp -= damage;
 

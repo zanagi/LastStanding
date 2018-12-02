@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
     public float SoulRatio { get { return spirit.SoulRatio; } }
     public SpiritState State { get { return spirit.state; } set { spirit.state = value; }  }
 
+    // Extra
+    public bool hasBlast;
+
     private void Start()
     {
         components = GetComponentsInChildren<PlayerComponent>(true);
@@ -42,6 +45,11 @@ public class Player : MonoBehaviour
         {
             animator.CrossFade(targetState, targetTime);
             targetState = string.Empty;
+        }
+
+        if(hasBlast && State == SpiritState.Idle && Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Debug.Log("Use blast");
         }
     }
 
