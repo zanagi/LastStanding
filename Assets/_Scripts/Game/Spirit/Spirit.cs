@@ -17,7 +17,7 @@ public class Spirit : MonoBehaviour {
     [Header("Class specific values")]
     public float soulModifier = 1.0f;
     public float attackForce = 4.0f;
-    public int strength = 5;
+    public int strength = 5, bombStrength;
 
     [Header("Audio")]
     public AudioSource explosionSource;
@@ -272,11 +272,11 @@ public class Spirit : MonoBehaviour {
     {
         if(state == SpiritState.Flight)
         {
-            var enemy = collision.collider.GetComponent<Enemy>();
+            var enemy = collision.collider.GetComponentInParent<Enemy>();
 
             if(enemy)
             {
-                // TODO: Enemy take damage
+                enemy.TakeDamage(this, bombStrength);
                 Explode();
             } else if(flightForce >= explosionLimit)
             {

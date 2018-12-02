@@ -476,7 +476,7 @@ MonoBehaviour:
   maxMoveTime: 3
   speed: 10
   attacking: 0
-  hp: 300
+  hp: 200
   strength: 10
   killExp: 50
   soulStrength: 10

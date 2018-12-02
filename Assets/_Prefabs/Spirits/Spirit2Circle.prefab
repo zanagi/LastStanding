@@ -882,6 +882,8 @@ MonoBehaviour:
   level: 1
   soulModifier: 1
   attackForce: 4
+  strength: 5
+  bombStrength: 70
   explosionSource: {fileID: 82750662003422968}
   hitSource: {fileID: 82282225606251494}
   state: 0
@@ -891,6 +893,11 @@ MonoBehaviour:
   flightDirection: {x: 0, y: 0, z: 0}
   ai: {fileID: 0}
   animator: {fileID: 0}
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114908203841262056
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -20,7 +20,6 @@ public class ExplosionPS : MonoBehaviour {
 	void Update () {
         time += Time.deltaTime;
         transform.localScale = Vector3.one * scaleCurve.Evaluate(time / duration);
-        Debug.Log(transform.localScale);
 
         if(time >= duration)
         {
