@@ -476,11 +476,15 @@ MonoBehaviour:
   maxMoveTime: 3
   speed: 10
   attacking: 0
-  hp: 100
+  hp: 300
   strength: 10
   killExp: 50
-  soulStrength: 8
+  soulStrength: 10
+  level: 1
   icon: {fileID: 114226314286802988, guid: 29f8ee771d5983547ba496210f72f901, type: 2}
+  statBlock: {fileID: 114992671262893588, guid: 22adbfe1f03c4b34d9134ff8dd96944a,
+    type: 2}
+  statBlockMargin: {x: 0, y: 1.5, z: 0}
   hitSound: {fileID: 82746857434187972}
   curve:
     serializedVersion: 2

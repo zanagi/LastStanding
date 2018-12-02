@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Third-person camera based on UnityStandardAssets PivotBasedCameraRig
 public class GameCameraThirdPerson : GameCamera {
     
     private Transform camTransform;

@@ -20,13 +20,18 @@ public class Enemy : MonoBehaviour {
 
     [Header("Stats")]
     public int hp = 100;
-    public int strength = 10, killExp = 50, soulStrength = 8;
+    public int strength = 10, killExp = 50, soulStrength = 8, level = 1;
     public UIEnemyIcon icon;
+    public UIStatBlock statBlock;
+    public Vector3 statBlockMargin = Vector3.up * 2;
     public AudioSource hitSound;
 
     protected EnemyCollider[] colliders;
     protected Rigidbody rBody;
     protected Animator animator;
+    protected int startHp;
+
+    public float HealthRatio { get { return (float)hp / startHp; } }
 
     protected virtual void Start()
     {
@@ -34,9 +39,12 @@ public class Enemy : MonoBehaviour {
         rBody = GetComponent<Rigidbody>();
         Init();
 
+        startHp = hp;
         // Spawn icon
         icon = Instantiate(icon, GameManager.Instance.uiCanvas.iconContainer);
         icon.SetOrientation(GameManager.Instance.player.transform.position, transform.position);
+        statBlock = Instantiate(statBlock, GameManager.Instance.uiCanvas.iconContainer);
+        statBlock.SetValues(transform.position, HealthRatio, statBlockMargin, level);
 
         // Add to list
         GameManager.Instance.enemies.Add(this);
@@ -79,6 +87,7 @@ public class Enemy : MonoBehaviour {
         if (!GameManager.Instance.IsIdle)
             return;
         icon.SetOrientation(GameManager.Instance.player.transform.position, transform.position);
+        statBlock.SetValues(transform.position, HealthRatio, statBlockMargin);
     }
 
     protected virtual IEnumerator DoAction()
@@ -177,25 +186,29 @@ public class Enemy : MonoBehaviour {
     {
         var damage = Mathf.Min(hp, amount);
         hp -= damage;
-        source.AddExp(damage);
 
         if (hp <= 0)
         {
             OnDeath(source);
-        } else
+        }
+        else if (source)
         {
+            source.AddExp(damage);
             var dir = transform.position - source.transform.position;
             rBody.AddForce(dir.normalized, ForceMode.VelocityChange);
         }
     }
+    
 
     protected virtual void OnDeath(Spirit source)
     {
         // remove from list
         GameManager.Instance.enemies.Remove(this);
 
-        // other
-        source.AddExp(killExp);
+        if(source)
+            source.AddExp(killExp);
         Destroy(gameObject);
+        Destroy(icon.gameObject);
+        Destroy(statBlock.gameObject);
     }
 }

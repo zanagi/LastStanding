@@ -503,7 +503,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1663785839920258
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,7 +763,6 @@ GameObject:
   - component: {fileID: 20377809688993052}
   - component: {fileID: 81211725803242738}
   - component: {fileID: 114358683874511058}
-  - component: {fileID: 45631497409146784}
   m_Layer: 0
   m_Name: GameCameraTopDown
   m_TagString: Untagged
@@ -2343,14 +2342,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1673087497446828}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!45 &45631497409146784
-Skybox:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1838321040259616}
-  m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: d91973b3f581a0948b2ea626ac2e7b71, type: 2}
 --- !u!54 &54481968882726354
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -2849,6 +2840,8 @@ MonoBehaviour:
   asPauseTime: 0.6
   asFocusImage: {fileID: 114242829429356664}
   asFocusSource: {fileID: 82388211398992330}
+  explosionPrefab: {fileID: 1246812565330120, guid: dd120f77328847b46bd9af7387b40685,
+    type: 2}
   spirits: []
   enemies: []
 --- !u!114 &114117381161222114

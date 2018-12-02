@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Third-person camera based on UnityStandardAssets PivotBasedCameraRig
 public abstract class GameCamera : MonoBehaviour {
 
     public Camera Camera { get; protected set; }

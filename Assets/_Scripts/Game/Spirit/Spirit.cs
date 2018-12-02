@@ -127,7 +127,7 @@ public class Spirit : MonoBehaviour {
     {
         if(health <= 0 && !isDead)
         {
-            Explode();
+            Die();
         }
     }
 
@@ -246,15 +246,19 @@ public class Spirit : MonoBehaviour {
 
     public void Explode()
     {
-        // TODO: Explosion effect
         if (explosionSource)
         {
             explosionSource.transform.SetParent(null);
             explosionSource.Play();
+            explosionSource.gameObject.AddComponent<AutoDestroyAS>();
         }
-        GameManager.Instance.uiCanvas.SpawnExplosionSound(transform.position);
+        GameManager.Instance.SpawnExplosion(transform.position);
+        Die();
+    }
 
-        if(ai)
+    private void Die()
+    {
+        if (ai)
             gameObject.SetActive(false);
         isDead = true;
         onDeath.Invoke();

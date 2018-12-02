@@ -30,6 +30,9 @@ public class GameManager : MonoBehaviour
     public Image asFocusImage;
     public AudioSource asFocusSource;
 
+    [Header("Explosion")]
+    public GameObject explosionPrefab;
+
     // Other list
     [HideInInspector] public List<Spirit> spirits = new List<Spirit>();
     [HideInInspector] public List<Enemy> enemies = new List<Enemy>();
@@ -94,6 +97,12 @@ public class GameManager : MonoBehaviour
     {
         return gameCamera.Camera.WorldToScreenPoint(worldPos);
     }
+
+    public void SpawnExplosion(Vector3 pos)
+    {
+        uiCanvas.SpawnExplosionSound(pos);
+        Instantiate(explosionPrefab, pos, Quaternion.identity);
+    } 
 
     public void GameOver()
     {
