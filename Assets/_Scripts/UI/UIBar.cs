@@ -8,7 +8,7 @@ public class UIBar : MonoBehaviour {
     [SerializeField] private Image barImage;
     [SerializeField] private float fillChangeSpeed = 0.01f;
     [SerializeField] private Transform scaleTransform;
-    private float targetFill;
+    private float targetFill = 1.0f;
 
     public void SetFill(float fill, bool instant = false)
     {

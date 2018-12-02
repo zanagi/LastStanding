@@ -22,8 +22,7 @@ public class SpiritAttackCollider : MonoBehaviour {
 
     protected virtual void OnSpiritContact(Spirit other)
     {
-        if(other)
-            other.ReceiveAttack(spirit);
+        // 
     }
 
     protected virtual void OnEnemyContact(Enemy enemy)
@@ -32,6 +31,8 @@ public class SpiritAttackCollider : MonoBehaviour {
         {
             enemy.hitSound.Play();
             enemy.TakeDamage(spirit, spirit.strength);
+            GameManager.Instance.uiCanvas.SpawnPEHitSound(
+                GameManager.Instance.ScreenPos((spirit.transform.position + enemy.transform.position) / 2));
         }
     }
 }

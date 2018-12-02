@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 
     public void HandleLateUpdate()
     {
-        if (targetState.Length > 0)
+        if (targetState != null && targetState.Length > 0)
         {
             animator.CrossFade(targetState, targetTime);
             targetState = string.Empty;

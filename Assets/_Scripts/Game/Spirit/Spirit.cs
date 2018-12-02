@@ -127,7 +127,7 @@ public class Spirit : MonoBehaviour {
     {
         if(health <= 0 && !isDead)
         {
-            Die();
+            Explode();
         }
     }
 

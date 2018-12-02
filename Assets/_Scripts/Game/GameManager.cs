@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public List<Spirit> spirits = new List<Spirit>();
     [HideInInspector] public List<Enemy> enemies = new List<Enemy>();
 
+    [Header("End")]
+    public SceneSwitcher switcher;
+
     private void Awake()
     {
         if(Instance)
@@ -51,6 +54,7 @@ public class GameManager : MonoBehaviour
         gameCamera = GetComponentInChildren<GameCamera>();
         uiCanvas = GetComponentInChildren<UICanvas>();
         CameraBounds = FindObjectOfType<CameraBounds>();
+        switcher = GetComponent<SceneSwitcher>();
 
         // Attack scene focus
         asFocusImage.gameObject.SetActive(false);
@@ -64,6 +68,13 @@ public class GameManager : MonoBehaviour
     
     private void Update ()
     {
+        // Check end
+        if (enemies.Count <= 0 && !switcher.IsActive)
+        {
+            switcher.SwitchScene();
+            return;
+        }
+
         if (State != GameState.Idle)
             return;
 

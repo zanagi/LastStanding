@@ -14,6 +14,11 @@ public class PlayerActionController : PlayerComponent
 
     [SerializeField] private Transform dirArrowTransform;
 
+    private void Start()
+    {
+        dirArrowTransform.position = player.transform.position;
+    }
+
     public override void HandleUpdate()
     {
         if (player.State != SpiritState.Idle)
