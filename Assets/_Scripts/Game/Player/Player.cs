@@ -56,7 +56,6 @@ public class Player : MonoBehaviour
 
     public void PlayIdleAnimation()
     {
-
         if (moveStateName != attackStateName)
         {
             targetState = idleStateName;

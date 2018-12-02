@@ -82,21 +82,27 @@ public class Enemy : MonoBehaviour {
 
     protected virtual IEnumerator DoAction()
     {
-        hasAction = true;
-        yield return MoveToPlayer(attackRange);
+        if (GameManager.Instance.spirits.Count == 0)
+            yield break;
 
+        hasAction = true;
+        yield return MoveToTarget(attackRange);
+        
         attacking = true;
         yield return Attack();
         attacking = false;
-        
         Init();
     }
 
-    protected virtual IEnumerator MoveToPlayer(float range)
+    protected virtual IEnumerator MoveToTarget(float range)
     {
         // Find target spirit
         var spirits = GameManager.Instance.spirits;
         var count = spirits.Count;
+
+        if (count == 0)
+            yield break;
+
         Spirit target = null;
         for(int i = 0; i < count; i++)
         {

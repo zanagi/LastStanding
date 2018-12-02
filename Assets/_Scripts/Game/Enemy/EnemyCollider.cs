@@ -18,7 +18,7 @@ public class EnemyCollider : MonoBehaviour {
         if (!enemy)
             enemy = GetComponentInParent<Enemy>();
 
-        if (!enemy.attacking)
+        if (!enemy.attacking || spiritHit)
             return;
 
         var spirit = other.GetComponent<Spirit>();

@@ -225,8 +225,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 0.32484868, g: 0.61549157, b: 0.9433962, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 1, g: 0.93981373, b: 0.7028302, a: 1}
+  m_Intensity: 1.2
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -643,7 +643,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4973476937352902, guid: 707af499af4e4fb448089c4e79d2b761, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4973476937352902, guid: 707af499af4e4fb448089c4e79d2b761, type: 2}
       propertyPath: m_LocalRotation.x
@@ -664,10 +664,6 @@ Prefab:
     - target: {fileID: 4973476937352902, guid: 707af499af4e4fb448089c4e79d2b761, type: 2}
       propertyPath: m_RootOrder
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1312379321564120, guid: 707af499af4e4fb448089c4e79d2b761, type: 2}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 707af499af4e4fb448089c4e79d2b761, type: 2}
@@ -739,6 +735,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1135592762}
+  - component: {fileID: 1135592763}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -765,6 +762,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1135592763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1135592761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceaa4b1b8b17aca4ba057833c25e0667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  count: 0
+  spiritPrefabs:
+  - {fileID: 114082159034538038, guid: e8eaba41721134945994d226e5943cb7, type: 2}
+  - {fileID: 114479140292065374, guid: 93e48cc3f4de6ae4182c16b186334b7a, type: 2}
+  baseColors:
+  - {r: 1, g: 0, b: 0, a: 0}
+  - {r: 0.018393278, g: 1, b: 0, a: 0}
+  - {r: 0, g: 0.26675177, b: 1, a: 0}
+  - {r: 0.99285436, g: 1, b: 0, a: 0}
+  rimColors:
+  - {r: 1, g: 0, b: 0.8683319, a: 0}
+  - {r: 0, g: 0.86376, b: 1, a: 0}
+  - {r: 1, g: 0.7008203, b: 0, a: 0}
+  xCount: 3
+  yCount: 3
+  xMargin: 3
+  yMargin: 2
 --- !u!1001 &1320299241
 Prefab:
   m_ObjectHideFlags: 0

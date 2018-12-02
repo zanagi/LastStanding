@@ -41,6 +41,7 @@ public class Spirit : MonoBehaviour {
     // AI
     [HideInInspector] public SpiritAI ai;
     [HideInInspector] public Animator animator;
+    private bool isDead;
 
     public float HealthRatio
     {
@@ -121,7 +122,7 @@ public class Spirit : MonoBehaviour {
     
     private void CheckHealth()
     {
-        if(health <= 0)
+        if(health <= 0 && !isDead)
         {
             Explode();
         }
@@ -130,13 +131,24 @@ public class Spirit : MonoBehaviour {
     public void TakeDamage(Enemy enemy)
     {
         var damage = enemy.strength;
+        var r = SoulRatio;
 
-        if(SoulRatio >= 0.7f)
+        if(r >= 0.8f)
+        {
+            damage /= 4;
+        } else if(r >= 0.6)
         {
             damage /= 2;
-        } else if (SoulRatio <= 0.3f)
+        }
+        else if (r >= 0.2f)
+        {
+            damage = (int)(damage * 1.5f);
+        } else if(r > 0)
         {
             damage *= 2;
+        } else
+        {
+            damage *= 3;
         }
         health = Mathf.Max(0, health - damage);
     }
@@ -227,8 +239,11 @@ public class Spirit : MonoBehaviour {
             explosionSource.transform.SetParent(null);
             explosionSource.Play();
         }
-        gameObject.SetActive(false);
 
+        if(ai)
+            gameObject.SetActive(false);
+
+        isDead = true;
         // Remove from list
         GameManager.Instance.spirits.Remove(this);
     }
