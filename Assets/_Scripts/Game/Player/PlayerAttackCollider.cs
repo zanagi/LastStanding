@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttackCollider : SpiritAttackCollider {
-
-    protected override void OnSpiritContact(Spirit other)
+    
+    protected override void OnEnemyContact(Enemy enemy)
     {
-        GameManager.Instance.InitAttackScene(other);
-        base.OnSpiritContact(other);
+        if (enemy)
+        {
+            GameManager.Instance.uiCanvas.SpawnPEHitSound(
+                GameManager.Instance.ScreenPos((spirit.transform.position + enemy.transform.position) / 2));
+            base.OnEnemyContact(enemy);
+        }
     }
 }

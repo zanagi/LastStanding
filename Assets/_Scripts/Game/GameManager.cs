@@ -90,6 +90,11 @@ public class GameManager : MonoBehaviour
         player.HandleLateUpdate();
     }
 
+    public Vector3 ScreenPos(Vector3 worldPos)
+    {
+        return gameCamera.Camera.WorldToScreenPoint(worldPos);
+    }
+
     public void GameOver()
     {
 

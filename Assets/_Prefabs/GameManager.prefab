@@ -744,7 +744,7 @@ GameObject:
   - component: {fileID: 33838112035160468}
   - component: {fileID: 23902811261421044}
   - component: {fileID: 135114509471420014}
-  - component: {fileID: 114845447514939900}
+  - component: {fileID: 114174138850931562}
   m_Layer: 11
   m_Name: Mesh (HandR)
   m_TagString: Untagged
@@ -2919,6 +2919,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114174138850931562
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1836778400635688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4894e4f6d9335834a8b76e1c78db8318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spirit: {fileID: 0}
 --- !u!114 &114182944289808640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3024,6 +3036,7 @@ MonoBehaviour:
   level: 1
   soulModifier: 1
   attackForce: 30
+  strength: 5
   explosionSource: {fileID: 82351261524085986}
   hitSource: {fileID: 82137815072370318}
   state: 0
@@ -3033,6 +3046,11 @@ MonoBehaviour:
   flightDirection: {x: 0, y: 0, z: 0}
   ai: {fileID: 0}
   animator: {fileID: 0}
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114358683874511058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3202,20 +3220,10 @@ MonoBehaviour:
     type: 2}
   enemyHitSoundPrefab: {fileID: 1657800622613890, guid: 2cf9f1b49a9dc7e46a23e478bca34139,
     type: 2}
+  peHitSoundPrefab: {fileID: 1373489702858348, guid: 4b8b0832c6bd7cb4da3aa3d06a70f291,
+    type: 2}
   explosionPrefab: {fileID: 114918247940962700, guid: 646a76c32843204438011c227631f22e,
     type: 2}
---- !u!114 &114845447514939900
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1836778400635688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a3ef5e659e8cbf468649b69dbdbf4d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spirit: {fileID: 0}
 --- !u!114 &114912211113306424
 MonoBehaviour:
   m_ObjectHideFlags: 1

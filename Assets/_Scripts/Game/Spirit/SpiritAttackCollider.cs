@@ -29,6 +29,9 @@ public class SpiritAttackCollider : MonoBehaviour {
     protected virtual void OnEnemyContact(Enemy enemy)
     {
         if (enemy)
+        {
+            enemy.hitSound.Play();
             enemy.TakeDamage(spirit, spirit.strength);
+        }
     }
 }

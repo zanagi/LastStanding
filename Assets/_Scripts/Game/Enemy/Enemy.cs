@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour {
     public int hp = 100;
     public int strength = 10, killExp = 50, soulStrength = 8;
     public UIEnemyIcon icon;
+    public AudioSource hitSound;
 
     protected EnemyCollider[] colliders;
     protected Rigidbody rBody;
@@ -178,18 +179,13 @@ public class Enemy : MonoBehaviour {
         hp -= damage;
         source.AddExp(damage);
 
-        Debug.Log("Take damage: " + amount + "/" + name + "/" + attacking);
-
         if (hp <= 0)
         {
             OnDeath(source);
-        } else if (!attacking)
+        } else
         {
-            StopAllCoroutines();
-
             var dir = transform.position - source.transform.position;
             rBody.AddForce(dir.normalized, ForceMode.VelocityChange);
-            Init();
         }
     }
 
