@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
             targetState = string.Empty;
         }
 
-        if(hasBlast && State == SpiritState.Idle && Input.GetKeyDown(KeyCode.Alpha1))
+        if(hasBlast && State == SpiritState.Idle && Input.GetMouseButtonDown(1))
         {
             Debug.Log("Use blast");
         }

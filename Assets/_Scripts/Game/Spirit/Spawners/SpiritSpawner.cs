@@ -14,11 +14,14 @@ public abstract class SpiritSpawner : MonoBehaviour {
         SpawnSpirits();
     }
     
-    public void SpawnSpirit(Vector3 pos)
+    public void SpawnSpirit(Vector3 pos, bool lookAtPlayer = false)
     {
         var spirit = Instantiate(spiritPrefabs.GetRandom());
         spirit.transform.position = pos;
         spirit.SetColors(baseColors.GetRandom(), rimColors.GetRandom());
+
+        if (lookAtPlayer)
+            spirit.transform.LookAt(GameManager.Instance.player.transform);
     }
 
     public abstract void SpawnSpirits();
