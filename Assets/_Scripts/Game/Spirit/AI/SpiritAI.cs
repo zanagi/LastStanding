@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpiritAI : MonoBehaviour {
 
     public float speed = 1;
-    protected Animator animator;
+    [HideInInspector] public Animator animator;
     protected static string startState = "Idle";
     
 	protected virtual void Start ()

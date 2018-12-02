@@ -40,6 +40,7 @@ public class Spirit : MonoBehaviour {
 
     // AI
     [HideInInspector] public SpiritAI ai;
+    [HideInInspector] public Animator animator;
 
     public float HealthRatio
     {
@@ -71,6 +72,7 @@ public class Spirit : MonoBehaviour {
 
         // AI
         ai = GetComponent<SpiritAI>();
+        animator = GetComponent<Animator>();
 
         // Add to list
         GameManager.Instance.spirits.Add(this);

@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour {
 
     protected EnemyCollider[] colliders;
     protected Rigidbody rBody;
+    protected Animator animator;
 
     protected virtual void Start()
     {
@@ -35,10 +36,16 @@ public class Enemy : MonoBehaviour {
         // Spawn icon
         icon = Instantiate(icon, GameManager.Instance.uiCanvas.iconContainer);
         icon.SetOrientation(GameManager.Instance.player.transform.position, transform.position);
-        
+
         // Add to list
         GameManager.Instance.enemies.Add(this);
     }
+
+    public void SetAnimatorSpeed(float speed)
+    {
+        if (animator)
+            animator.speed = speed;
+    } 
 
     protected virtual void Init()
     {
@@ -135,17 +142,29 @@ public class Enemy : MonoBehaviour {
         rBody.AddForce(transform.forward * speed);
     }
 
-    protected virtual IEnumerator Attack()
+    protected IEnumerator Attack()
     {
         // Rotation attack
         var t = 0.0f;
         while (t < attackTime)
         {
-            var delta = Mathf.Min(Time.fixedDeltaTime / attackTime, attackTime - t);
-            t += Time.fixedDeltaTime;
-            transform.Rotate(new Vector3(0, delta * 360, 0));
+            if (GameManager.Instance.IsIdle)
+            {
+                t += Time.fixedDeltaTime;
+                AttackFrame(t);
+            } else
+            {
+                rBody.velocity = Vector3.zero;
+            }
             yield return new WaitForFixedUpdate();
         }
+
+    }
+
+    protected virtual void AttackFrame(float t)
+    {
+        var delta = Mathf.Min(Time.fixedDeltaTime / attackTime, attackTime - t);
+        transform.Rotate(new Vector3(0, delta * 360, 0));
     }
     
     public void TakeDamage(Spirit source, int amount)

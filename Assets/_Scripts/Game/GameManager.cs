@@ -101,6 +101,7 @@ public class GameManager : MonoBehaviour
 
         // Set state to pause other game logic
         SetState(GameState.Event);
+        SetAnimators(false);
 
         // Play audio
         asFocusSource.Play();
@@ -118,6 +119,16 @@ public class GameManager : MonoBehaviour
 
         // Set state back
         SetState(GameState.Idle);
+        SetAnimators(true);
+    }
+
+    private void SetAnimators(bool active)
+    {
+        for(int i = 0; i < spirits.Count; i++)
+        {
+            if (spirits[i].ai)
+                spirits[i].ai.animator.speed = active ? 1 : 0;
+        }
     }
 
     private IEnumerator _MoveCamera(Transform cameraTransform, Vector3 targetPos, Transform targetSpiritTransform)
