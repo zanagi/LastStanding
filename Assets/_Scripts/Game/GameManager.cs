@@ -30,8 +30,9 @@ public class GameManager : MonoBehaviour
     public Image asFocusImage;
     public AudioSource asFocusSource;
 
-    // Spirit list
+    // Other list
     [HideInInspector] public List<Spirit> spirits = new List<Spirit>();
+    [HideInInspector] public List<Enemy> enemies = new List<Enemy>();
 
     private void Awake()
     {
@@ -65,6 +66,11 @@ public class GameManager : MonoBehaviour
 
         player.HandleUpdate();
         gameCamera.HandleUpdate();
+    
+        for(int i = 0; i < spirits.Count; i++)
+        {
+            spirits[i].HandleAiUpdate();
+        }
 	}
 
     private void FixedUpdate()

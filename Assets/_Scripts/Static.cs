@@ -46,4 +46,10 @@ public static class Static
         }
         return array[Random.Range(0, array.Length)];
     }
+
+    public static bool TransformCloser(Transform t, Transform a, Transform b)
+    {
+        var tPos = t.position;
+        return Vector3.SqrMagnitude(tPos - a.position) < Vector3.SqrMagnitude(tPos - b.position);
+    }
 }

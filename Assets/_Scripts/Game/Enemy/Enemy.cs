@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour {
     protected EnemyCollider[] colliders;
     protected Rigidbody rBody;
 
-    protected void Start()
+    protected virtual void Start()
     {
         colliders = GetComponentsInChildren<EnemyCollider>();
         rBody = GetComponent<Rigidbody>();
@@ -35,6 +35,9 @@ public class Enemy : MonoBehaviour {
         // Spawn icon
         icon = Instantiate(icon, GameManager.Instance.uiCanvas.iconContainer);
         icon.SetOrientation(GameManager.Instance.player.transform.position, transform.position);
+        
+        // Add to list
+        GameManager.Instance.enemies.Add(this);
     }
 
     protected virtual void Init()
@@ -153,7 +156,17 @@ public class Enemy : MonoBehaviour {
 
         if (hp <= 0)
         {
-            source.AddExp(killExp);
+            OnDeath(source);
         }
+    }
+
+    protected virtual void OnDeath(Spirit source)
+    {
+        // remove from list
+        GameManager.Instance.enemies.Remove(this);
+
+        // other
+        source.AddExp(killExp);
+        Destroy(gameObject);
     }
 }

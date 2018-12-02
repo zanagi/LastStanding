@@ -38,6 +38,9 @@ public class Spirit : MonoBehaviour {
     private Material[] materials;
     private int previousSoul;
 
+    // AI
+    [HideInInspector] public SpiritAI ai;
+
     public float HealthRatio
     {
         get { return (float)health / maxHealth; }
@@ -65,6 +68,9 @@ public class Spirit : MonoBehaviour {
         }
         SetGlow();
         previousSoul = soul;
+
+        // AI
+        ai = GetComponent<SpiritAI>();
 
         // Add to list
         GameManager.Instance.spirits.Add(this);
@@ -103,6 +109,12 @@ public class Spirit : MonoBehaviour {
 
         CheckSoul();
         CheckHealth();
+    }
+
+    public void HandleAiUpdate()
+    {
+        if (ai)
+            ai.HandleUpdate(this);
     }
     
     private void CheckHealth()
