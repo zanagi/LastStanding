@@ -90,6 +90,11 @@ public class GameManager : MonoBehaviour
         player.HandleLateUpdate();
     }
 
+    public void GameOver()
+    {
+
+    }
+
     public void InitAttackScene(Spirit targetSpirit)
     {
         StartCoroutine(_PlayAttackScene(targetSpirit));
@@ -127,7 +132,10 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < spirits.Count; i++)
         {
             if (spirits[i].ai)
+            {
                 spirits[i].ai.animator.speed = active ? 1 : 0;
+                spirits[i].rBody.velocity = Vector3.zero;
+            }
         }
     }
 

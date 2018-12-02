@@ -15,17 +15,20 @@ public class SpiritAttackCollider : MonoBehaviour {
     {
         if (spirit.state == SpiritState.Attack)
         {
-            var otherSpirit = other.GetComponent<Spirit>();
-
-            if (otherSpirit)
-            {
-                OnSpiritContact(otherSpirit);
-            }
+            OnSpiritContact(other.GetComponent<Spirit>());
+            OnEnemyContact(other.GetComponentInParent<Enemy>());
         }
     }
 
     protected virtual void OnSpiritContact(Spirit other)
     {
-        other.ReceiveAttack(spirit);
+        if(other)
+            other.ReceiveAttack(spirit);
+    }
+
+    protected virtual void OnEnemyContact(Enemy enemy)
+    {
+        if (enemy)
+            enemy.TakeDamage(spirit, spirit.strength);
     }
 }

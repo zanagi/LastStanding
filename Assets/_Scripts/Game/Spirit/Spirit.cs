@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Spirit : MonoBehaviour {
 
@@ -16,6 +17,7 @@ public class Spirit : MonoBehaviour {
     [Header("Class specific values")]
     public float soulModifier = 1.0f;
     public float attackForce = 4.0f;
+    public int strength = 5;
 
     [Header("Audio")]
     public AudioSource explosionSource;
@@ -41,6 +43,7 @@ public class Spirit : MonoBehaviour {
     // AI
     [HideInInspector] public SpiritAI ai;
     [HideInInspector] public Animator animator;
+    public UnityEvent onDeath;
     private bool isDead;
 
     public float HealthRatio
@@ -254,6 +257,7 @@ public class Spirit : MonoBehaviour {
         if(ai)
             gameObject.SetActive(false);
         isDead = true;
+        onDeath.Invoke();
 
         // Remove from list
         GameManager.Instance.spirits.Remove(this);

@@ -164,7 +164,6 @@ public class Enemy : MonoBehaviour {
             }
             yield return new WaitForFixedUpdate();
         }
-
     }
 
     protected virtual void AttackFrame(float t)
@@ -179,9 +178,18 @@ public class Enemy : MonoBehaviour {
         hp -= damage;
         source.AddExp(damage);
 
+        Debug.Log("Take damage: " + amount + "/" + name + "/" + attacking);
+
         if (hp <= 0)
         {
             OnDeath(source);
+        } else if (!attacking)
+        {
+            StopAllCoroutines();
+
+            var dir = transform.position - source.transform.position;
+            rBody.AddForce(dir.normalized, ForceMode.VelocityChange);
+            Init();
         }
     }
 
