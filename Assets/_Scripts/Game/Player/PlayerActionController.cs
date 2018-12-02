@@ -12,12 +12,15 @@ public class PlayerActionController : PlayerComponent
     [SerializeField] private Transform frontBoxTransform;
     [SerializeField] private Vector3 frontBoxExtents;
 
+    [SerializeField] private Transform dirArrowTransform;
+
     public override void HandleUpdate()
     {
         if (player.State != SpiritState.Idle)
             return;
 
-        if(Input.GetAxis("Attack") > 0)
+        CheckDirection();
+        if (Input.GetAxis("Attack") > 0)
         {
             player.State = SpiritState.Action;
             player.PlayAttackAnimation();
@@ -65,19 +68,25 @@ public class PlayerActionController : PlayerComponent
         }
     }
 
-    // Set player to look at the direction mouse is pointing at
-    private void SetDirection()
+    private void CheckDirection()
     {
+        // Set arrow pos
+        dirArrowTransform.position = player.transform.position;
         RaycastHit hit;
         GameCamera gameCamera = GameManager.Instance.gameCamera;
-        
+
         if (Physics.Raycast(gameCamera.GetScreenRay(Input.mousePosition), out hit, groundCastDist, groundLayer))
         {
             var pos = hit.point;
             pos.y = 0;
-            player.transform.LookAt(pos);
+            dirArrowTransform.LookAt(pos);
         }
     }
 
-    
+    // Set player to look at the direction mouse is pointing at
+    private void SetDirection()
+    {
+        var targetPos = transform.position + dirArrowTransform.forward;
+        player.transform.LookAt(targetPos);
+    }
 }
