@@ -10,6 +10,8 @@ public class ExplosionPS : MonoBehaviour {
     private ParticleSystem ps;
     private float duration, time;
 
+    private List<Enemy> enemiesHit = new List<Enemy>();
+
 	// Use this for initialization
 	void Start () {
         ps = GetComponent<ParticleSystem>();
@@ -31,9 +33,10 @@ public class ExplosionPS : MonoBehaviour {
     {
         var enemy = other.GetComponentInParent<Enemy>();
 
-        if(enemy)
+        if(enemy && !enemiesHit.Contains(enemy))
         {
             enemy.TakeDamage(null, explosionDamage);
+            enemiesHit.Add(enemy);
         }
     }
 }

@@ -441,11 +441,11 @@ MeshRenderer:
   m_GameObject: {fileID: 1039763617478404}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: effbf6d012350164a8c856375cf3aadf, type: 2}
@@ -511,11 +511,11 @@ MeshRenderer:
   m_GameObject: {fileID: 1193562457541150}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: effbf6d012350164a8c856375cf3aadf, type: 2}
@@ -546,11 +546,11 @@ MeshRenderer:
   m_GameObject: {fileID: 1776705264643260}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: effbf6d012350164a8c856375cf3aadf, type: 2}
@@ -581,11 +581,11 @@ MeshRenderer:
   m_GameObject: {fileID: 1306935840146580}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: effbf6d012350164a8c856375cf3aadf, type: 2}
@@ -877,9 +877,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9cde009e8eb2a94aa1b5c08f66dbe13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  soul: 50
   level: 1
+  health: 20
+  soul: 50
   soulModifier: 1
   attackForce: 4
   strength: 5

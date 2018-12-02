@@ -38,7 +38,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public List<Enemy> enemies = new List<Enemy>();
 
     [Header("End")]
-    public SceneSwitcher switcher;
+    public GameObject gameOverObject;
+
+    [HideInInspector] public SceneSwitcher switcher;
 
     private void Awake()
     {
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour
         uiCanvas = GetComponentInChildren<UICanvas>();
         CameraBounds = FindObjectOfType<CameraBounds>();
         switcher = GetComponent<SceneSwitcher>();
+        gameOverObject.SetActive(false);
 
         // Attack scene focus
         asFocusImage.gameObject.SetActive(false);
@@ -117,7 +120,18 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        State = GameState.Event;
+        gameOverObject.SetActive(true);
+    }
 
+    public void Retry()
+    {
+        LoadingScreen.Instance.ReloadScene();
+    }
+
+    public void BackToMenu()
+    {
+        LoadingScreen.Instance.LoadScene("Menu");
     }
 
     public void InitAttackScene(Spirit targetSpirit)

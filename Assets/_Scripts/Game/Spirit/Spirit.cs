@@ -5,16 +5,17 @@ using UnityEngine.Events;
 
 public class Spirit : MonoBehaviour {
 
-    private static int maxHealth = 100, maxSoul = 100, levelExp = 100;
+    private static int maxSoul = 100, levelExp = 100;
 
-    [Range(0, 100)] public int health = 100;
-    [Range(0, 100)] public int soul = 100;
 
     [Header("Level")]
     public int level = 1;
     private int exp = 0;
 
     [Header("Class specific values")]
+    public int health = 100;
+    private int maxHealth = 100;
+    public int soul = 100;
     public float soulModifier = 1.0f;
     public float attackForce = 4.0f;
     public int strength = 5, bombStrength;
@@ -61,6 +62,7 @@ public class Spirit : MonoBehaviour {
         if (materials != null)
             return;
 
+        maxHealth = health;
         rBody = GetComponent<Rigidbody>();
         normalMass = rBody.mass;
 
@@ -258,8 +260,7 @@ public class Spirit : MonoBehaviour {
 
     private void Die()
     {
-        if (ai)
-            gameObject.SetActive(false);
+        gameObject.SetActive(false);
         isDead = true;
         onDeath.Invoke();
 

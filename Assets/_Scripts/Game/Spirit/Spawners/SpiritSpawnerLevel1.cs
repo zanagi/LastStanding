@@ -12,7 +12,7 @@ public class SpiritSpawnerLevel1 : SpiritSpawner {
         for(int i = 0; i < count; i++)
         {
             var r = Random.Range(minRadius, maxRadius);
-            var angle = Random.Range(0f, 360f);
+            var angle = i * 360f / count;
             SpawnSpirit(new Vector3(r * Mathf.Cos(angle), 0, r * Mathf.Sin(angle)));
         }
     }
