@@ -1107,7 +1107,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1428109010699544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -6}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4220580675937076}
@@ -1470,7 +1470,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1838321040259616}
   m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 6, z: -9}
+  m_LocalPosition: {x: 0, y: 6, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4367661091033088}
@@ -2841,6 +2841,7 @@ MonoBehaviour:
   asFocusImage: {fileID: 114242829429356664}
   asFocusSource: {fileID: 82388211398992330}
   spirits: []
+  enemies: []
 --- !u!114 &114117381161222114
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3021,6 +3022,8 @@ MonoBehaviour:
   attacker: {fileID: 0}
   flightForce: 0
   flightDirection: {x: 0, y: 0, z: 0}
+  ai: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!114 &114358683874511058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3186,6 +3189,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconContainer: {fileID: 224141724843898830}
+  hitSoundPrefab: {fileID: 1011365307689324, guid: ff0b6e8d0b933fa418ca579b389e38d6,
+    type: 2}
+  enemyHitSoundPrefab: {fileID: 1657800622613890, guid: 2cf9f1b49a9dc7e46a23e478bca34139,
+    type: 2}
 --- !u!114 &114845447514939900
 MonoBehaviour:
   m_ObjectHideFlags: 1

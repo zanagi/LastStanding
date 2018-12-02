@@ -23,7 +23,7 @@ public class SpiritAiCircle : SpiritAI {
         angle = (angle + angleSpeed * Time.deltaTime * direction);
         var targetPos = new Vector3(Mathf.Cos(angle) * radius, 0, Mathf.Sin(angle) * radius);
         transform.LookAt(startPos + targetPos);
-        var rBody = spirit.rBody;
-        rBody.velocity = transform.forward * speed;
+
+        spirit.rBody.velocity = transform.forward * speed;
     }
 }

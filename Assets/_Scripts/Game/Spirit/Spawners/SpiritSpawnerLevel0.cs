@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SpiritSpawnerLevel0 : SpiritSpawner {
     
-    [SerializeField] private int xCount, yCount;
-    [SerializeField] private float xMargin, yMargin;
+    public int xCount, yCount;
+    public float xMargin, yMargin;
 
     public override void SpawnSpirits()
     {

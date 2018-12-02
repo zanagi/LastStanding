@@ -151,6 +151,17 @@ public class Spirit : MonoBehaviour {
             damage *= 3;
         }
         health = Mathf.Max(0, health - damage);
+        OnHit(enemy.transform.position, true);
+    }
+
+    private void OnHit(Vector3 cause, bool byEnemy)
+    {
+        // Audio
+        hitSource.Play();
+
+        var camera = GameManager.Instance.gameCamera.Camera;
+        var hitPos = camera.WorldToScreenPoint((cause + transform.position) / 2 + 0.5f * Vector3.up);       
+        GameManager.Instance.uiCanvas.SpawnHitSound(hitPos, byEnemy);
     }
 
     private void CheckSoul()
@@ -227,13 +238,12 @@ public class Spirit : MonoBehaviour {
         else
             source.ReduceSoul(12);
 
-        // Audio
-        hitSource.Play();
+        OnHit(source.transform.position, false);
     }
 
     public void Explode()
     {
-        // TODO:
+        // TODO: Explosion effect
         if (explosionSource)
         {
             explosionSource.transform.SetParent(null);
@@ -242,8 +252,8 @@ public class Spirit : MonoBehaviour {
 
         if(ai)
             gameObject.SetActive(false);
-
         isDead = true;
+
         // Remove from list
         GameManager.Instance.spirits.Remove(this);
     }

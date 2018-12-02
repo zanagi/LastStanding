@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour {
 
     [Header("Stats")]
     public int hp = 100;
-    public int strength = 10, killExp = 50;
+    public int strength = 10, killExp = 50, soulStrength = 8;
     public UIEnemyIcon icon;
 
     protected EnemyCollider[] colliders;

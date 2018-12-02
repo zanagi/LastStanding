@@ -25,6 +25,7 @@ public class EnemyCollider : MonoBehaviour {
         if (spirit)
         {
             spirit.TakeDamage(enemy);
+            spirit.ReduceSoul(enemy.soulStrength);
             spiritHit = resetHit;
         }
     }
