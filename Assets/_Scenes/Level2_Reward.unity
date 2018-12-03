@@ -225,7 +225,7 @@ MonoBehaviour:
   nextScene: Level3
   sound: {fileID: 1518680443}
   soundDelay: 0.1
-  loadDelay: 2
+  loadDelay: 4
 --- !u!114 &1214814329
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -270,7 +270,7 @@ MonoBehaviour:
   nextScene: Level2
   sound: {fileID: 308533383}
   soundDelay: 0.1
-  loadDelay: 2
+  loadDelay: 4
 --- !u!114 &1214814329
 MonoBehaviour:
   m_ObjectHideFlags: 0
