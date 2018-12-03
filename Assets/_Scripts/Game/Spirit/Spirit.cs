@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Spirit : MonoBehaviour {
 
-    private static int maxSoul = 100, levelExp = 100;
+    private static int levelExp = 100;
 
 
     [Header("Level")]
@@ -14,8 +14,8 @@ public class Spirit : MonoBehaviour {
 
     [Header("Class specific values")]
     public int health = 100;
-    private int maxHealth = 100;
     public int soul = 100;
+    private int maxHealth = 100, maxSoul = 100;
     public float soulModifier = 1.0f;
     public float attackForce = 4.0f;
     public int strength = 5, bombStrength;
@@ -63,6 +63,7 @@ public class Spirit : MonoBehaviour {
             return;
 
         maxHealth = health;
+        maxSoul = soul;
         rBody = GetComponent<Rigidbody>();
         normalMass = rBody.mass;
 
@@ -174,11 +175,13 @@ public class Spirit : MonoBehaviour {
 
     private void CheckSoul()
     {
+        /*
         if (previousSoul != soul)
             SetGlow();
+            */
         previousSoul = soul;
     }
-
+    
     private void CheckFlight()
     {
         if (state == SpiritState.Flight)
@@ -186,6 +189,8 @@ public class Spirit : MonoBehaviour {
             if (flightForce <= 0 || (flightCheck && rBody.velocity.sqrMagnitude < flightMinSqr))
             {
                 StopFlight();
+                if (flightForce >= explosionLimit)
+                    Explode();
                 return;
             }
             rBody.velocity = flightDirection * flightForce;
@@ -271,18 +276,20 @@ public class Spirit : MonoBehaviour {
         GameManager.Instance.spirits.Remove(this);
     }
 
+    private int collisionCount = 0;
+
     // Check flight explosion
     private void OnCollisionEnter(Collision collision)
     {
-        if(state == SpiritState.Flight)
-        {
-            var enemy = collision.collider.GetComponentInParent<Enemy>();
+        var enemy = collision.collider.GetComponentInParent<Enemy>();
 
+        if (state == SpiritState.Flight)
+        {
             if(enemy)
             {
                 enemy.TakeDamage(this, bombStrength);
                 Explode();
-            } else if(flightForce >= explosionLimit)
+            } else if(flightForce >= explosionLimit || collisionCount > 0)
             {
                 Explode();
             }

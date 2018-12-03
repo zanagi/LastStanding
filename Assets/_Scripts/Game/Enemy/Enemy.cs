@@ -119,7 +119,6 @@ public class Enemy : MonoBehaviour {
             {
                 if(!target || Random.Range(0f, 1f) < 0.5f)
                     target = spirits[i];
-                break;
             }
         }
 

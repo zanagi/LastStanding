@@ -15,7 +15,7 @@ public class SpiritAttackCollider : MonoBehaviour {
     {
         if (spirit.state == SpiritState.Attack)
         {
-            OnSpiritContact(other.GetComponent<Spirit>());
+            OnSpiritContact(other.GetComponentInParent<Spirit>());
             OnEnemyContact(other.GetComponentInParent<Enemy>());
         }
     }

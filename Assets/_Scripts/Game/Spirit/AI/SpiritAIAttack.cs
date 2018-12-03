@@ -83,12 +83,13 @@ public class SpiritAIAttack : SpiritAI {
             if (Vector3.SqrMagnitude(transform.position - enemies[i].transform.position)
                 < visionRange)
             {
-                if (!target || Random.Range(0f, 1f) < 0.5f)
+                if (!target || Static.TransformCloser(transform, enemies[i].transform, target.transform))
                     target = enemies[i];
-                break;
             }
         }
-        target = enemies[0];
+
+        if(!target)
+            target = enemies[0];
 
         // Move
         animator.CrossFade(runState, 0.5f);
@@ -122,6 +123,7 @@ public class SpiritAIAttack : SpiritAI {
         {
             yield return null;
         }
+        animator.CrossFade(idleState, 0.1f);
     }
 
     public void SetAttackState()

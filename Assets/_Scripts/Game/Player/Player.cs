@@ -5,13 +5,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [HideInInspector] public Animator animator;
-    public string idleStateName = "Idle", moveStateName = "Run", attackStateName = "Attack";
-    public float moveTransitionTime = 0.2f, stopTransitionTime = 0.5f, attackTransitionTime = 0.2f;
+    public string idleStateName = "Idle", moveStateName = "Run", attackStateName = "Attack", blastStateName = "Blast";
+    public float moveTransitionTime = 0.2f, stopTransitionTime = 0.5f, attackTransitionTime = 0.2f, blastTransitionTime = 0.2f;
     private string targetState;
     private float targetTime;
 
     private PlayerComponent[] components;
-    private Spirit spirit;
+    [HideInInspector] public Spirit spirit;
 
     public float HealthRatio { get { return spirit.HealthRatio; } }
     public float SoulRatio { get { return spirit.SoulRatio; } }
@@ -46,11 +46,6 @@ public class Player : MonoBehaviour
             animator.CrossFade(targetState, targetTime);
             targetState = string.Empty;
         }
-
-        if(hasBlast && State == SpiritState.Idle && Input.GetMouseButtonDown(1))
-        {
-            Debug.Log("Use blast");
-        }
     }
 
     public void PlayMoveAnimation()
@@ -75,5 +70,11 @@ public class Player : MonoBehaviour
     {
         targetState = attackStateName;
         targetTime = attackTransitionTime;
+    }
+
+    public void PlayBlastAnimation()
+    {
+        targetState = blastStateName;
+        targetTime = blastTransitionTime;
     }
 }

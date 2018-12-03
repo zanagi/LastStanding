@@ -12,7 +12,9 @@ public class PlayerActionController : PlayerComponent
     [SerializeField] private Transform frontBoxTransform;
     [SerializeField] private Vector3 frontBoxExtents;
 
-    [SerializeField] private Transform dirArrowTransform;
+    [SerializeField] private Transform dirArrowTransform, blastSpawnTransform;
+    [SerializeField] private PlayerBlast blastPrefab;
+    [SerializeField] private int extraDamage;
 
     private void Start()
     {
@@ -33,6 +35,18 @@ public class PlayerActionController : PlayerComponent
             if(lookAtCastTarget)
                 SetDirection();
             CheckFront();
+        } else if(player.hasBlast && Input.GetAxis("Blast") > 0 && player.spirit.soul >= blastPrefab.cost)
+        {
+            player.State = SpiritState.Action;
+            player.PlayBlastAnimation();
+
+            if (lookAtCastTarget)
+                SetDirection();
+
+            // Create blast
+            player.spirit.ReduceSoul(blastPrefab.cost);
+            var blast = Instantiate(blastPrefab, blastSpawnTransform.position, transform.rotation);
+            blast.damage += extraDamage;
         }
     }
 
@@ -59,6 +73,9 @@ public class PlayerActionController : PlayerComponent
         for (int i = 0; i < colliders.Length; i++)
         {
             var spirit = colliders[i].GetComponent<Spirit>();
+
+            if (!spirit)
+                continue;
 
             if (!targetSpirit || Vector3.SqrMagnitude(spirit.transform.position - pos)
                     < Vector3.SqrMagnitude(targetSpirit.transform.position - pos))

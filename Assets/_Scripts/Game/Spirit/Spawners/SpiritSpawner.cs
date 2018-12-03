@@ -13,8 +13,8 @@ public abstract class SpiritSpawner : MonoBehaviour {
     {
         SpawnSpirits();
     }
-    
-    public void SpawnSpirit(Vector3 pos, bool lookAtPlayer = false)
+
+    public void SpawnSpirit(Vector3 pos, bool lookAtPlayer = false, bool reverse = false)
     {
         var spirit = Instantiate(spiritPrefabs.GetRandom());
         spirit.transform.position = pos;
@@ -22,6 +22,8 @@ public abstract class SpiritSpawner : MonoBehaviour {
 
         if (lookAtPlayer)
             spirit.transform.LookAt(GameManager.Instance.player.transform);
+        if (reverse)
+            spirit.transform.Rotate(0, 180, 0);
     }
 
     public abstract void SpawnSpirits();

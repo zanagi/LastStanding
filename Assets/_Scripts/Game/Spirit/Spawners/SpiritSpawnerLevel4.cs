@@ -5,13 +5,14 @@ using UnityEngine;
 public class SpiritSpawnerLevel4 : SpiritSpawner {
 
     [SerializeField] private float r = 8.0f, angleOffset = 30f;
+    [SerializeField] private bool reverse;
 
     public override void SpawnSpirits()
     {
         for(int i = 0; i < count; i++)
         {
             var angle = i * 360f / count + angleOffset;
-            SpawnSpirit(new Vector3(r * Mathf.Cos(angle), 0, r * Mathf.Sin(angle)), true);
+            SpawnSpirit(new Vector3(r * Mathf.Cos(angle), 0, r * Mathf.Sin(angle)), true, reverse);
         }
     }
 }

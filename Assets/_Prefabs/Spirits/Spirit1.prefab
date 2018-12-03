@@ -2031,7 +2031,7 @@ MonoBehaviour:
   soulModifier: 1
   attackForce: 2
   strength: 5
-  bombStrength: 200
+  bombStrength: 150
   explosionSource: {fileID: 82403530428907874}
   hitSource: {fileID: 82675979597386776}
   state: 0
